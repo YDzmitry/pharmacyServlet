@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- SQL Dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</property>
+
+        <!-- Database Connection Settings -->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">toor</property>
+        <property name="hibernate.default_schema">pharmacy</property>
+
+        <!-- Echo All Executed SQL To Console -->
+        <property name="show_sql">true</property>
+
+        <property name="hibernate.current_session_context_class">thread</property>
+
+        <mapping class="com.vironit.pharmacy.model.User"/>
+        <mapping class="com.vironit.pharmacy.model.Role"/>
+        <mapping class="com.vironit.pharmacy.model.TypeAccount"/>
+    </session-factory>
+</hibernate-configuration>
