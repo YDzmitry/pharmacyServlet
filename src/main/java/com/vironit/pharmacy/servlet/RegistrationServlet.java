@@ -6,6 +6,7 @@ import com.vironit.pharmacy.model.Customer;
 import com.vironit.pharmacy.model.Role;
 import com.vironit.pharmacy.model.TypeAccount;
 import com.vironit.pharmacy.model.User;
+import com.vironit.pharmacy.validator.CreatingNewUserValidator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,12 +31,15 @@ public class RegistrationServlet extends HttpServlet {
             UserDaoImpl userDao = new UserDaoImpl(HibernateUtil.getSessionFactory());
             userDao.create(customer);
         }catch (Exception e){
-            System.out.println("qwe");
+            CreatingNewUserValidator creatingNewUserValidator = new CreatingNewUserValidator();
+            creatingNewUserValidator.validate(e);
+            req.setAttribute("errMessageMap",creatingNewUserValidator.getErrMessageMap());
+            req.getServletContext().getRequestDispatcher("/registration.jsp").forward(req, resp);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        System.out.println("dopostRega");
     }
 }

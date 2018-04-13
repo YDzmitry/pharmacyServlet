@@ -20,7 +20,5 @@ public class CustomGenericException extends  RuntimeException {
         super(cause);
     }
 
-
-
 }
 
