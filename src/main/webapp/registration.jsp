@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<form action="RegistrationServlet">
+<form action="RegistrationServlet" method="post">
     Please enter your login
     <br>
     <input type="text" name="login"/>

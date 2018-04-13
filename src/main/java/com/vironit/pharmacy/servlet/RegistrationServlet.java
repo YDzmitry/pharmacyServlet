@@ -20,26 +20,42 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User customer = new User();
+       /* User user = new User();
         Role role = new Role(3,"CUSTOMER");
-        TypeAccount typeAccount = new TypeAccount(1, "VERYFYING");
-        customer.setLogin(req.getParameter("login"));
-        customer.setPassword(req.getParameter("password"));
-        customer.setTypeAccount(typeAccount);
-        customer.setRole(role);
+        TypeAccount typeAccount = new TypeAccount(2, "ACTIVE");
+        user.setLogin(req.getParameter("login"));
+        user.setPassword(req.getParameter("password"));
+        user.setTypeAccount(typeAccount);
+        user.setRole(role);
         try {
             UserDaoImpl userDao = new UserDaoImpl(HibernateUtil.getSessionFactory());
-            userDao.create(customer);
+            userDao.create(user);
+        }catch (Exception e){
+            CreatingNewUserValidator creatingNewUserValidator = new CreatingNewUserValidator();
+            creatingNewUserValidator.validate(e);
+            req.setAttribute("errMessageMap",creatingNewUserValidator.getErrMessageMap());
+            req.getServletContext().getRequestDispatcher("/registration.jsp").forward(req, resp);
+        }*/
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = new User();
+        Role role = new Role(3,"CUSTOMER");
+        TypeAccount typeAccount = new TypeAccount(2, "ACTIVE");
+        user.setLogin(req.getParameter("login"));
+        user.setPassword(req.getParameter("password"));
+        user.setTypeAccount(typeAccount);
+        user.setRole(role);
+        try {
+            UserDaoImpl userDao = new UserDaoImpl(HibernateUtil.getSessionFactory());
+            userDao.create(user);
+            resp.sendRedirect("/successCreateUser.jsp");
         }catch (Exception e){
             CreatingNewUserValidator creatingNewUserValidator = new CreatingNewUserValidator();
             creatingNewUserValidator.validate(e);
             req.setAttribute("errMessageMap",creatingNewUserValidator.getErrMessageMap());
             req.getServletContext().getRequestDispatcher("/registration.jsp").forward(req, resp);
         }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("dopostRega");
     }
 }

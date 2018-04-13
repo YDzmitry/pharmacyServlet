@@ -67,4 +67,17 @@ public class UserDaoImpl implements UserDao {
         }
         logger.info("Person deleted successfully, person details=" + user);
     }
+
+
+    //@Override
+    public User getByLogin(String login) throws CustomGenericException {
+        Session session = this.sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        User user = session.byNaturalId(User.class)
+                .using("login",login)
+                .load();
+        transaction.commit();
+        logger.info("Person loaded successfully, Person details=" + login);
+        return user;
+    }
 }

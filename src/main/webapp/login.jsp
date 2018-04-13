@@ -11,7 +11,7 @@
     <title>Login</title>
 </head>
 <body>
-<form action="LoginServlet">
+<form action="LoginServlet" method="post">
     Please enter your username
     <br>
     <input type="text" name="login"/>

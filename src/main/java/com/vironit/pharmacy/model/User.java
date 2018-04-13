@@ -3,6 +3,7 @@ package com.vironit.pharmacy.model;
 
 import com.vironit.pharmacy.dao.Identified;
 import org.hibernate.annotations.ColumnTransformer;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,6 +18,7 @@ public class User implements Serializable, Identified<Integer> {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
+    @NaturalId
     @Column(name = "login")
     private String login;
 
@@ -40,6 +42,9 @@ public class User implements Serializable, Identified<Integer> {
     }
 
 
+    public User(String login) {
+        this.login = login;
+    }
 
     public User() {
     }
