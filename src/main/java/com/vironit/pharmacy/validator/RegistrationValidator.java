@@ -1,5 +1,6 @@
 package com.vironit.pharmacy.validator;
 
+import com.vironit.pharmacy.errorMessageBundle.BundleMessage;
 import com.vironit.pharmacy.exception.RegistrationValidatorException;
 
 import java.util.HashMap;
@@ -24,10 +25,15 @@ public class RegistrationValidator {
             errMessageMap.put("login", "Логин должен состоять из букв, цифр, дефисов " +
                     "и подчёркивания, длина пароля должна быть не меньше 3 и не больше 16 символов");
         }
-        if (!patternPassword.matcher(password).matches()) {
+        /*if (!patternPassword.matcher(password).matches()) {
             errMessageMap.put("password", "Пароль должен состоять из букв, цифр, дефисов " +
                     "и подчёркивания, длина пароля должна быть не меньше 6 и не больше 18 символов");
+        }*/
+        ///
+        if (!patternPassword.matcher(password).matches()) {
+            errMessageMap.put("password", BundleMessage.resourceBundle.getString("incorrectLogin"));
         }
+        ///
         if (!patternPassport.matcher(passport).matches()) {
             errMessageMap.put("passport", "Паспорт должен начинаться с 2 букв латинского алфавита" +
                     " и иметь 7 цифр");
