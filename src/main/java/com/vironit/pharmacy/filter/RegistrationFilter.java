@@ -7,6 +7,7 @@ import com.vironit.pharmacy.validator.RegistrationValidator;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.*;
+import java.io.IOException;
 
 @WebFilter(servletNames = "RegistrationServlet")
 public class RegistrationFilter  implements Filter {
@@ -18,7 +19,7 @@ public class RegistrationFilter  implements Filter {
     }
 
     //do filter method
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws java.io.IOException, ServletException {
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
         RegistrationValidator registrationValidator = new RegistrationValidator();
         String login = req.getParameter("login");
         String password = req.getParameter("password");
@@ -28,7 +29,7 @@ public class RegistrationFilter  implements Filter {
             chain.doFilter(req, resp);
         }catch (RegistrationValidatorException ex){
             req.setAttribute("errMessageMap",ex.getErrMessageMap());
-            req.getServletContext().getRequestDispatcher("/registration.jsp").forward(req, resp);
+            req.getServletContext().getRequestDispatcher("/loginAndRegistrationPage/registration.jsp").forward(req, resp);
         }
     }
 

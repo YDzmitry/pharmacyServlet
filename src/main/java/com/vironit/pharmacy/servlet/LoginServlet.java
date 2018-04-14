@@ -24,8 +24,9 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //String login = (String) req.getAttribute("login");
-        String login = "login3456";
+        String login = req.getParameter("login");
+
+        //String login = "login3456";
         try {
             UserDaoImpl userDao = new UserDaoImpl(HibernateUtil.getSessionFactory());
             userDao.getByLogin(login);

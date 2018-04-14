@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "RegistrationServlet",urlPatterns = "/RegistrationServlet")
+@WebServlet(name = "RegistrationServlet",urlPatterns = "/loginAndRegistrationPage/RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
 
     @Override
